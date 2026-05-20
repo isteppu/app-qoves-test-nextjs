@@ -2,9 +2,16 @@
 
 import { RefObject } from 'react';
 import { useGSAP } from '@gsap/react';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
-export function useAnimations(
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(MotionPathPlugin);
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+export function useAnalysisAnimations(
   containerRef: RefObject<HTMLDivElement | null>,
   styles: Record<string, string>,
 ) {
@@ -15,7 +22,8 @@ export function useAnimations(
 
     tl.from(`.${styles.badge}`, { opacity: 0, y: -15, duration: 0.8 })
       .from(`.${styles.title}`, { opacity: 0, y: 30, duration: 1 }, '-=0.5')
-      .from(`.${styles.subtitle}`, { opacity: 0, y: 20, duration: 1 }, '-=0.7');
+      .from(`.${styles.subtitle}`, { opacity: 0, y: 20, duration: 1 }, '-=0.7')
+      .from(`.${styles.stepsRow}`, { opacity: 0, y: 30, duration: 1 }, '-=0.9');
 
     tl.from(`.${styles.visualCard}`, {
       opacity: 0,
@@ -23,42 +31,87 @@ export function useAnimations(
       y: 40,
       stagger: 0.15,
       duration: 1.2,
-      clearProps: 'all' // <--- ADD THIS LINE
+      clearProps: 'all'
     }, '-=0.6');
 
-    tl.from(`.${styles.connectorLine}`, {
+    tl.from(`.${styles.connectorSpacer}`, {
       strokeDashoffset: 100,
       opacity: 0,
       duration: 0.8
     }, '-=0.4');
 
-    tl.from(`.${styles.stepCard}`, {
-      opacity: 0,
-      y: 30,
-      stagger: 0.1,
-      duration: 0.8
-    }, '-=0.5');
-
-    const pathEl = containerRef.current.querySelector('.animated-progress-line') as SVGPathElement;
+    const pathEl = containerRef.current.querySelector('.track-path') as SVGPathElement;
+    const tailEl = containerRef.current.querySelector('.animated-tail') as SVGPathElement;
 
     if (pathEl) {
       const pathLength = pathEl.getTotalLength();
+      const tailLength = 150;
 
-      gsap.set(pathEl, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength
+      gsap.set('.animated-tail', {
+        strokeDasharray: `${tailLength} ${pathLength}`, 
+        strokeDashoffset: pathLength,
       });
 
-      gsap.to(pathEl, {
+      gsap.to('.animated-tail', {
         strokeDashoffset: 0,
-        duration: 3,
-        ease: 'power2.inOut',
+        duration: 10,
+        ease: 'none',
         repeat: -1,
-        repeatDelay: 0.5,
-        yoyo: true,
+        // stagger: 5, 
+      });
+
+      gsap.to('.progress-head', {
+        opacity: 1,
+        strokeDashoffset: 0,
+        duration: 10,
+        ease: 'none',
+        repeat: -1,
+        motionPath: {
+          path: '.track-path',
+          align: '.track-path',
+          alignOrigin: [0, 0],
+          autoRotate: true,       
+        }
       });
     }
-
   }, { scope: containerRef });
 
+}
+
+export function useAestheticAnimations(
+  containerRef: RefObject<HTMLElement | null>,
+  styles: Record<string, string>,
+){
+  useGSAP(() => {
+    if (!containerRef.current) return;
+
+    gsap.to(`.${styles.parallaxSubject}`, {
+      scale: 1.2,
+      y: 20,      
+      ease: 'none',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',  
+        scrub: 1,   
+        markers: true,        
+      }
+    });
+
+    gsap.to(`.${styles.glassCard}`, {
+      x: 5,
+      y: 20,      
+      ease: 'none',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',  
+        scrub: 1,   
+        markers: true,        
+      }
+    });
+
+
+    ScrollTrigger.refresh();
+  }, { scope: containerRef });
 }

@@ -12,7 +12,7 @@
   min-height: 100svh;
   background-color: #ffffff;
   color: #1a1a1a;
-  padding: rem(80) 0;
+  padding: rem(20) 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,34 +128,33 @@
      SHOWCASE
   ========================= */
 
-.showcaseWrapper {
-  position: relative;
-  width: 100%;
-  margin-bottom: rem(80);
-}
+  .showcaseWrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: rem(20);
+  }
 
 .vectorOverlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-
-  :global(.animated-progress-line) {
-    stroke-dasharray: 3000;
-    stroke-dashoffset: 3000;
-  }
-}
+    position: absolute;
+    inset: 0; 
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    pointer-events: none; 
+ }
 
 .showcaseGrid {
-  display: grid;
-  grid-template-columns: rem(380) 1fr rem(380);
-  align-items: center;
-  gap: rem(20);
-  position: relative;
-  z-index: 2;
-}
+    position: relative;
+    z-index: 2; 
+    width: 100%;
+    display: grid;
+    grid-template-columns: rem(420) 1fr rem(420);
+    align-items: center;
+    gap: rem(10);
+  }
 
 /* =========================
      CARDS
@@ -163,7 +162,7 @@
 
 .visualCard {
   position: relative;
-  background: #ffffff;
+  background: "none";
   border-radius: rem(12);
   padding: rem(12);
   box-shadow: 0 rem(4) rem(30) rgba(0, 0, 0, 0.02);
@@ -176,25 +175,19 @@
     z-index: 3;
     font-family: var(--font-mono), monospace;
     font-size: rem(11);
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: rem(1);
-    color: #9ca3af;
+    color: #ffffff;
   }
 
   .imagePlaceholder {
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 6 / 7;
     border-radius: rem(8);
     overflow: hidden;
-    background-color: #f9fafb;
-    position: relative; // Add this to constrain the image tightly
-  
-    img {
-      display: block;   // <--- Forces the image to behave like a block, removing bottom gaps
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    background-color: #869AA1;
+    position: relative; // CRITICAL: Next.js images will break your layout without this
   }
 }
 
