@@ -34,7 +34,7 @@ export default function MatrixChart({ isHovered }: MatrixChartProps) {
     };
 
     return (
-        <div className="flex flex-col">
+        <div>
             <div className={styles.matrixWrapper}>
                 <span className={`${styles.label} ${styles.labelTop}`}>BOLD</span>
                 <span className={`${styles.label} ${styles.labelBottom}`}>SUBTLE</span>

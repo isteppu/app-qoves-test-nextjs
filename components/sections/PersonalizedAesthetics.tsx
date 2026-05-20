@@ -70,15 +70,8 @@ export default function PersonalizedAesthetics() {
           onMouseEnter={() => setHoveredCard(2)}
           onMouseLeave={() => setHoveredCard(null)}
         >
-          <div className={styles.chartContainer}>
-            <BellCurveChart isActive={hoveredCard === 2} />
-          </div>
-          <div className={styles.chartXAxis}>
-            <span>LOW DENSITY</span>
-            <span>AVERAGE DENSITY</span>
-            <span>HIGH DENSITY</span>
-          </div>
-          <p className={styles.cardFooterTextAlt}>Your eyebrow density is in the mid 40th percentile</p>
+          {/* Inject the fully styled chart directly */}
+          <BellCurveChart isActive={hoveredCard === 2} />
         </div>
 
         {/* CARD 3: Percentage & Slider */}

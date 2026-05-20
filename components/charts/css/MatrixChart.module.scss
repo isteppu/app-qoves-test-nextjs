@@ -9,20 +9,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin-top: rem(20);
   }
   
   .label {
     position: absolute;
     font-family: var(--font-mono), monospace;
-    font-size: rem(8);
+    font-weight: 300;
+    font-size: rem(7);
     letter-spacing: rem(1);
     color: rgba(255, 255, 255, 0.6);
   }
-  .labelTop { top: rem(10); }
-  .labelBottom { bottom: rem(10); }
-  .labelLeft { left: rem(-10);}
-  .labelRight { right: rem(-10); }
+  .labelTop { top: rem(25); }
+  .labelBottom { bottom: rem(25); }
+  .labelLeft { left: rem(0);}
+  .labelRight { right: rem(0); }
   
   .crosshairVertical, .crosshairHorizontal {
     position: absolute;
@@ -47,9 +48,9 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
-    gap: rem(4);
-    width: 65%;
-    height: 65%;
+    gap: rem(5);
+    width: 62%;
+    height: 62%;
     position: relative;
     z-index: 2;
   }
@@ -88,14 +89,13 @@
   .cardFooterText {
     font-size: rem(11);
     color: rgba(255, 255, 255, 0.6);
-    margin-top: auto;
-    text-align: center;
+    text-align: left;
   }
   
   .cardFooterTextAlt {
     @extend .cardFooterText;
     background: rgba(255, 255, 255, 0.1);
-    padding: rem(8);
-    border-radius: rem(6);
-    margin-top: rem(12);
+    padding: rem(5);
+    border-radius: rem(5);
+    margin-top: rem(22);
   }

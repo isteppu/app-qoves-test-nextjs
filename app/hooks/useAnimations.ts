@@ -86,7 +86,21 @@ export function useAestheticAnimations(
     if (!containerRef.current) return;
 
     gsap.to(`.${styles.parallaxSubject}`, {
-      scale: 1.2,
+      scale: 1.1,
+      y: 20,      
+      ease: 'none',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',  
+        scrub: 1,   
+        markers: true,        
+      }
+    });
+
+    gsap.to(`.${styles.headerBlock}`, {
+      scale: 1.1,
+      x: 10,
       y: 20,      
       ease: 'none',
       scrollTrigger: {
@@ -99,7 +113,7 @@ export function useAestheticAnimations(
     });
 
     gsap.to(`.${styles.glassCard}`, {
-      x: 5,
+      x: 10,
       y: 20,      
       ease: 'none',
       scrollTrigger: {

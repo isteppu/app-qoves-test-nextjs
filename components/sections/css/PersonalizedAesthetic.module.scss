@@ -101,8 +101,8 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: rem(12);
-  padding: rem(20);
+  border-radius: rem(8);
+  padding: rem(5);
   color: #ffffff;
   z-index: 2;
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -113,10 +113,10 @@
 
 
 .card1 {
-  top: rem(90);
+  top: rem(80);
   left: rem(-20);
   width: rem(280);
-  height: rem(330);
+  height: rem(350);
 }
 
 .card2 {
