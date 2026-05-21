@@ -57,8 +57,7 @@ export default function MatrixChart({ isHovered }: MatrixChartProps) {
 
             </div>
             <p className={styles.cardFooterTextAlt}>
-                {isHovered ? "Brows shift toward feminine characteristics."
-                    : "Brows fall in the top 20% for natural fullness."}
+                Brows fall in the top 20% for natural fullness.
             </p>
         </div>
     );

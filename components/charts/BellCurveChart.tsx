@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -10,133 +10,185 @@ import {
   ResponsiveContainer,
   CartesianGrid,
   ReferenceDot,
-  ReferenceLine
-} from 'recharts';
-import styles from './css/BellCurveChart.module.scss';
+} from "recharts";
+import styles from "./css/BellCurveChart.module.scss";
+import gsap from "gsap";
+
+const X_DOMAIN: [number, number] = [-32, 32];
+
+const X_TICKS = [-32, -24, -16, -8, 0, 8, 16, 24, 32];
+const Y_TICKS = [0, 10, 20, 30, 40, 50, 60, 70];
 
 
-export default function BellCurveChart({ isActive }: { isActive: boolean }) {
-  const xTicks = [-32, -24, -16, -8, 0, 8, 16, 24, 32];
-  const yTicks = [0, 10, 20, 30, 40, 50, 60, 70];
+export default function BellCurveChart() {
+    const [bellActive, setBellActive] = useState(false);
+  
+    const bellActiveRef = useRef(false);
+    const valuesRef = useRef({ x: 16, y: 60 });
+  
+    const sizeRef = useRef({ width: 0, height: 0 });
+    const clipRef = useRef<SVGRectElement | null>(null);
+  
+    const threshValue = useRef({ x: 0 });
+    const isAnimating = useRef(false);
+    const hasInit = useRef(false);
 
-  const chartData = useMemo(() => {
-    // Determine where the shading starts (16 for normal tail, 0 for the exact middle)
-    const shadingThreshold = isActive ? -10 : 16;
+  
+  const dataToPixel = (dataX: number, width: number) => {
+    return ((dataX - X_DOMAIN[0]) / (X_DOMAIN[1] - X_DOMAIN[0])) * width;
+  };
 
-    return Array.from({ length: 65 }, (_, i) => {
-      const x = i - 32;
-      // Smooth bell curve formula
-      const y = Math.exp(-(x * x) / 180) * 60;
+  const updateClip = () => {
+    if (!clipRef.current) return;
+    clipRef.current.setAttribute("x", String(threshValue.current.x));
+    clipRef.current.setAttribute(
+      "width",
+      String(sizeRef.current.width - threshValue.current.x)
+    );
+  };
 
-      return {
-        x,
-        y,
-        // Dynamically append shading values based on the threshold
-        shadedY: x >= shadingThreshold ? y : 0
-      };
+  const onResize = (width: number, height: number) => {
+    sizeRef.current = { width, height };
+    if (!clipRef.current) return;
+
+    // initialize once after Recharts mounts
+    if (!hasInit.current) {
+      threshValue.current.x = dataToPixel(16, width);
+      updateClip();
+      hasInit.current = true;
+      return;
+    }
+
+    if (isAnimating.current) return;
+
+    threshValue.current.x = dataToPixel(
+      bellActiveRef.current ? -10 : 16,
+      width
+    );
+    updateClip();
+  };
+
+  const animateToThresh = (dataX: number, dataY: number) => {
+    if (!clipRef.current || sizeRef.current.width === 0) return;
+
+    isAnimating.current = true;
+    gsap.killTweensOf(threshValue.current);
+
+    gsap.to(threshValue.current, {
+      x: dataToPixel(dataX, sizeRef.current.width),
+      y: dataToPixel(dataY, sizeRef.current.height),
+      duration: 0.85,
+      ease: "power2.inOut",
+      onUpdate: updateClip,
+      onComplete: () => {
+        isAnimating.current = false;
+      },
     });
-  }, [isActive]);
+  };
+
+  const onClickBellChart = () => {
+    const next = !bellActiveRef.current;
+    bellActiveRef.current = next;
+    valuesRef.current = { x: valuesRef.current.x === 16 ? -10 : 16, y: valuesRef.current.y === 60 ? 30 : 60 };
+    setBellActive(next);
+    animateToThresh(next ? -10 : 16, next ? 60 : 30);
+  };
+
+  const chartData = useMemo(
+    () =>
+      Array.from({ length: 65 }, (_, i) => {
+        const fx = i - 32;
+        const fy = Math.exp(-(fx * fx) / 180) * valuesRef.current.y;
+        return { x: fx, y: fy, shadedY: fy };
+      }),
+    [valuesRef.current.y]
+  );
+
+  const dashLineData = useMemo(
+    () => [
+      { x: valuesRef.current.x, y: 0 },
+      { x: valuesRef.current.x, y: 70 },
+    ],
+    [valuesRef.current]
+  );
 
   return (
-    <div className={styles.chartWrapper}>
+    <div className={styles.chartWrapper} onClick={onClickBellChart}>
+      <ResponsiveContainer width="100%" height="100%" onResize={onResize}>
+        <AreaChart data={chartData}>
+          <defs>
+            <clipPath id="tail-clip">
+              <rect
+                ref={clipRef}
+                x={0}
+                y={-1000}
+                width={0}
+                height={2000}
+              />
+            </clipPath>
+          </defs>
 
-      {/* 1. The Recharts Graphical Container */}
-      <div className={styles.graphArea}>
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={chartData} margin={{ top: 0 }} width={'100%'}>
+          <CartesianGrid
+            stroke="rgba(255,255,255,0.18)"
+            strokeDasharray="3 3"
+          />
 
-            {/* Background Grid Pattern */}
-            <CartesianGrid
-              stroke="rgba(255, 255, 255, 0.18)"
-              vertical={true}
-              horizontal={true}
-              strokeDasharray="3 3"
-            />
-            <XAxis
-              dataKey="x"
-              type="number"
-              domain={[-32, 32]}
-              ticks={xTicks}
-              hide
-            />
-            <YAxis
-              type="number"
-              domain={[0, 70]}
-              tickCount={8}
-              ticks={yTicks}
-              interval={0}
-              minTickGap={0}
-              hide
-            />
+          <XAxis type="number" dataKey="x" domain={[-32, 32]} ticks={X_TICKS} hide />
+          <YAxis type="number" domain={[0, 70]} ticks={Y_TICKS} tickCount={8} interval={0} hide />
 
-            {/* Selective Shaded Tail Area */}
-            <Area
-              type="monotone"
-              dataKey="shadedY"
-              stroke="none"
-              fill="rgba(255, 255, 255, 0.15)"
-              connectNulls={false}
-              isAnimationActive={true}
-              animationDuration={600}
-              animationEasing="ease-in-out"
-            />
+          <Area
+            type="monotone"
+            dataKey="shadedY"
+            stroke="none"
+            fill="rgba(255,255,255,0.15)"
+            clipPath="url(#tail-clip)"
+            isAnimationActive={false}
+          />
 
-            {/* Main Crisp White Bell Curve Path */}
-            <Line
-              type="monotone"
-              dataKey="y"
-              stroke="rgba(255, 255, 255, 0.6)"
-              strokeWidth={1}
-              dot={false}
-              activeDot={false}
-              isAnimationActive
-              animationDuration={600}
-              animationEasing="ease-in-out"
-            />
+          <Line
+            type="monotone"
+            dataKey="y"
+            stroke="rgba(255,255,255,0.6)"
+            strokeWidth={1}
+            dot={false}
+            activeDot={false}
+            isAnimationActive={true}
+          />
 
-            <Line
-              data={[
-                { x: isActive ? -10 : 16, y: 0 },
-                { x: isActive ? -10 : 16, y: 70 },
-              ]}
-              dataKey="y"
-              stroke="rgba(255, 255, 255, 0.25)"
-              strokeDasharray="3 3"
-              isAnimationActive
-              animationDuration={600}
-              animationEasing="ease-in-out"
-              dot={false}
-            />
+          <Line
+            data={dashLineData}
+            dataKey="y"
+            stroke="rgba(255,255,255,0.25)"
+            strokeDasharray="3 3"
+            dot={false}
+            isAnimationActive={true}
+          />
 
-            {/* Three anchor dots across the path */}
-            <ReferenceDot x={-29} y={2} r={3} fill="rgba(255,255,255,0.4)" stroke="none" />
-            <ReferenceDot x={12} y={36} r={4} fill="#6ba4be" stroke="none" /> {/* Active User Indicator */}
-            <ReferenceDot x={29} y={2} r={3} fill="rgba(255,255,255,0.8)" stroke="none" />
-
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* 2. The Timeline Axis & Square Metrics */}
+          <ReferenceDot
+            x={valuesRef.current.x}
+            y={Math.exp(-(valuesRef.current.x * valuesRef.current.x) / 180) * valuesRef.current.y}
+            r={4}
+            fill="#6ba4be"
+            stroke="none"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+      
       <div className={styles.axisTimeline}>
-        <div className={styles.labelGroup}>
-          <span className={styles.axisLabel}>LOW DENSITY</span>
-          <div className={`${styles.squareIndicator} ${styles.sq1}`} />
-        </div>
-
-        <div className={styles.labelGroup}>
-          <span className={styles.axisLabel}>MEDIUM DENSITY</span>
-          <div className={`${styles.squareIndicator} ${styles.sq2}`} />
-        </div>
-
-        <div className={styles.labelGroup}>
-          <div className={`${styles.squareIndicator} ${styles.sq3}`} />
-          <div className={`${styles.squareIndicator} ${styles.sq4}`} />
-          <span className={styles.axisLabel}>HIGH DENSITY</span>
-        </div>
+        {[
+          { label: "LOW DENSITY", sq: [styles.sq1] },
+          { label: "MEDIUM DENSITY", sq: [styles.sq2] },
+          { label: "HIGH DENSITY", sq: [styles.sq3, styles.sq4] },
+        ].map(({ label, sq }) => (
+          <div key={label} className={styles.labelGroup}>
+            {label === "HIGH DENSITY" && sq.map(s => <div key={s} className={`${styles.squareIndicator} ${s}`} />)}
+            <span className={styles.axisLabel}>{label}</span>
+            {label !== "HIGH DENSITY" && sq.map(s => <div key={s} className={`${styles.squareIndicator} ${s}`} />)}
+          </div>
+        ))}
       </div>
 
-      <div className={styles.cardFooterText}>
+      <div className={styles.cardFooterTextAlt}>
         <p>Your eyebrow density is in the mid 40th percentile</p>
       </div>
     </div>

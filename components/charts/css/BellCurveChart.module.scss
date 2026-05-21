@@ -78,7 +78,7 @@
     font-size: rem(11);
     color: rgba(255, 255, 255, 0.6);
     margin-top: auto;
-    text-align: center;
+    text-align: left;
 }
 
 .cardFooterTextAlt {
@@ -88,3 +88,33 @@
     border-radius: rem(6);
     margin-top: rem(12);
 }
+
+/* BellCurveChart.module.scss */
+
+.tailActive {
+    transform-origin: right center;
+    animation: revealTail 0.6s ease-in-out forwards;
+  }
+  
+  .tailInactive {
+    transform-origin: right center;
+    animation: hideTail 0.6s ease-in-out forwards;
+  }
+  
+  @keyframes revealTail {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  
+  @keyframes hideTail {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
