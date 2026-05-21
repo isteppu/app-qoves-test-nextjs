@@ -86,8 +86,8 @@ export default function BellCurveChart() {
     });
   };
 
-  const onClickBellChart = () => {
-    const next = !bellActiveRef.current;
+  const onClickBellChart = (i: boolean) => {
+    const next = i;
     bellActiveRef.current = next;
     valuesRef.current = { x: valuesRef.current.x === 16 ? -10 : 16, y: valuesRef.current.y === 60 ? 30 : 60 };
     setBellActive(next);
@@ -113,7 +113,7 @@ export default function BellCurveChart() {
   );
 
   return (
-    <div className={styles.chartWrapper} onClick={onClickBellChart}>
+    <div className={styles.chartWrapper} onMouseEnter={() => onClickBellChart(true)} onMouseLeave={() => { onClickBellChart(false) }}>
       <ResponsiveContainer width="100%" height="100%" onResize={onResize}>
         <AreaChart data={chartData}>
           <defs>

@@ -86,8 +86,7 @@ export function useAestheticAnimations(
     if (!containerRef.current) return;
 
     gsap.to(`.${styles.parallaxSubject}`, {
-      scale: 1.1,
-      y: 150,      
+      scale: 1.1,      
       ease: 'none',
       scrollTrigger: {
         trigger: containerRef.current,

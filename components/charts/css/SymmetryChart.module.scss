@@ -67,12 +67,30 @@
   }
   
   // Solid line fill running underneath until reaching the target value location point
-  .solidLineFill {
+  .solidLineFill1 {
     position: absolute;
     top: -1px; // Align directly over parent container border
     left: 0;
-    height: 1px;
-    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    height: 3px;
+    border-top: 3px solid #CDDBE1;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .solidLineFill2 {
+    position: absolute;
+    top: -1px; // Align directly over parent container border
+    left: 0;
+    height: 3px;
+    border-top: 3px solid #9AAEB5;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .solidLineFill3 {
+    position: absolute;
+    top: -1px; // Align directly over parent container border
+    left: 0;
+    height: 3px;
+    border-top: 3px solid #5D767E;
     transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   }
   
