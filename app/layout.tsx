@@ -41,6 +41,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={`${neueMontreal.variable} ${zagmaMono.variable}`}>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <body>{children}</body>
     </html>
   );
