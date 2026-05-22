@@ -93,7 +93,7 @@ export function useAestheticAnimations(
         start: 'top bottom',
         end: 'bottom top',  
         scrub: 1,   
-        markers: true,        
+        markers: false,        
       }
     });
 
@@ -105,7 +105,7 @@ export function useAestheticAnimations(
         start: 'top bottom',
         end: 'bottom top',  
         scrub: 1,   
-        markers: true,        
+        markers: false,        
       }
     });
 
@@ -117,7 +117,7 @@ export function useAestheticAnimations(
         start: 'top bottom',
         end: 'bottom top',  
         scrub: 1,   
-        markers: true,        
+        markers: false,        
       }
     });
 
