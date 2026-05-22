@@ -6,7 +6,7 @@ import { FAQ_DATA } from '@/utils'
 import styles from './css/FAQs.module.scss';
 
 export default function FAQs() {
-  const [activeCat, setActiveCat] = useState<string | null>('general'); // 'general' open by default to match screenshot
+  const [activeCat, setActiveCat] = useState<string | null>(null); // 'general' open by default to match screenshot
   const [activeQuery, setActiveQuery] = useState<number | null>(0);     // First question open by default
 
   const handleCategoryToggle = (catId: string) => {
@@ -26,6 +26,7 @@ export default function FAQs() {
 
   return (
     <section className={styles.faqSectionWrapper}>
+      <div className={styles.container}>
       <div className={styles.headerBlock}>
         <span className={styles.badge}>YOUR QUESTIONS</span>
         <h2 className={styles.title}>Frequently asked <span>questions</span></h2>
@@ -83,6 +84,7 @@ export default function FAQs() {
             </div>
           );
         })}
+      </div>
       </div>
     </section>
   );

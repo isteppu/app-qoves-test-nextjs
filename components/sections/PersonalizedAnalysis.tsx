@@ -13,11 +13,11 @@ const PersonalizedAnalysis = () => {
 
   return (
     <section ref={containerRef} className={styles.sectionWrapper}>
-      <div className={styles.gridOverlay}>
+      {/* <div className={styles.gridOverlay}>
         <div className={styles.gridContainer}>
           <div className={styles.horizontalLine} />
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.container}>
         <div className={styles.headerBlock}>
