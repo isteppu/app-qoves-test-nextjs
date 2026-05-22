@@ -40,66 +40,43 @@ const PersonalizedAnalysis = () => {
           >
 
             <defs>
-              <linearGradient id="tailGradient" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-                <stop offset="70%" stopColor="#00E5FF" />
-                <stop offset="100%" stopColor="#00E5FF" />
+              <linearGradient id="comet-fade" gradientUnits="userSpaceOnUse">
+                <stop offset="100%" stopColor="#CDDBE1" />
+                <stop offset="100%" stopColor="#869AA1" />
               </linearGradient>
-
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="6" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
             </defs>
 
             <path
               className="track-path"
               d={ANIMATED_VECTOR_PATH}
               stroke="#D7E5EB"
-              fill="none"
-            />
-
-            <path
-              className="animated-tail"
-              d={ANIMATED_VECTOR_PATH}
-              stroke={ANIMATED_VECTOR_TAIL.stroke}
-              strokeWidth={ANIMATED_VECTOR_TAIL.strokeWidth}
-              fill="none"
-              strokeLinecap="square"
-              strokeLinejoin="round"
-            />
-
-            {/* <path
-              className="animated-tail"
-              d={ANIMATED_VECTOR_PATH}
-              stroke={ANIMATED_VECTOR_TAIL.stroke}
-              strokeWidth={ANIMATED_VECTOR_TAIL.strokeWidth}
-              fill="none"
-              strokeLinecap="square"
-              strokeLinejoin="round"
-            /> */}
-
-            <rect
-              className="progress-head"
-              width="10"
-              height="10"
-              fill="#4b5563"
-              rx="2"
-              style={{ opacity: 0 }}
-            />
-
-            {/* <path
-              className="animated-tail"
-              d={ANIMATED_VECTOR_PATH}
-              stroke="url(#comet-fade)"
               strokeWidth="1"
               fill="none"
-              strokeLinecap="square"
-              strokeLinejoin="round"
-            /> */}
+            />
+
+            {/* 2. Comet 1 Tail (1.5px fading stroke) */}
+            <path
+              className="tail-1"
+              d={ANIMATED_VECTOR_PATH}
+              stroke="url(#comet-fade)"
+              strokeWidth="1.5"
+              fill="none"
+              strokeLinecap="round"
+            />
+
+            {/* 3. Comet 2 Tail (1.5px fading stroke) */}
+            <path
+              className="tail-2"
+              d={ANIMATED_VECTOR_PATH}
+              stroke="url(#comet-fade)"
+              strokeWidth="1.5"
+              fill="none"
+              strokeLinecap="round"
+            />
+
+            {/* 4. Mini Square Heads (6x6px squares with slight 1px radius cornering) */}
+            <rect className="head-1" width="6" height="6" fill="#869AA1" rx="1" style={{ opacity: 0 }} />
+            <rect className="head-2" width="6" height="6" fill="#869AA1" rx="1" style={{ opacity: 0 }} />
           </svg>
 
           <div className={styles.showcaseGrid}>

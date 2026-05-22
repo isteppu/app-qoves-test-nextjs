@@ -1,15 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './css/MatrixChart.module.scss';
 
-export default function MatrixChart({ isHovered }: MatrixChartProps) {
+export default function MatrixChart() {
+    const [isShifted, setIsShifted] = useState(false);
     const rows = 10;
     const cols = 10;
 
     const defaultTarget = { x: 6, y: 2 };
     const hoverTarget = { x: 4, y: 1 };
-    const activeTarget = isHovered ? hoverTarget : defaultTarget;
+    const activeTarget = isShifted ? hoverTarget : defaultTarget;
 
     const getCellClass = (c: number, r: number) => {
         const dx = Math.abs(c - activeTarget.x);
@@ -30,7 +31,7 @@ export default function MatrixChart({ isHovered }: MatrixChartProps) {
     };
 
     return (
-        <div>
+        <div onMouseEnter={() => setIsShifted(true)} onMouseLeave={() => setIsShifted(false)}>
             <div className={styles.matrixWrapper}>
                 <span className={`${styles.label} ${styles.labelTop}`}>BOLD</span>
                 <span className={`${styles.label} ${styles.labelBottom}`}>SUBTLE</span>

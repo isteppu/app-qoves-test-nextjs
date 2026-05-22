@@ -41,38 +41,51 @@ export function useAnalysisAnimations(
     }, '-=0.4');
 
     const pathEl = containerRef.current.querySelector('.track-path') as SVGPathElement;
-    const tailEl = containerRef.current.querySelector('.animated-tail') as SVGPathElement;
-
-    if (pathEl) {
+    const tail1 = containerRef.current.querySelector('.tail-1') as SVGPathElement;
+    const tail2 = containerRef.current.querySelector('.tail-2') as SVGPathElement;
+    
+    if (pathEl && tail1 && tail2) {
       const pathLength = pathEl.getTotalLength();
-      const tailLength = 150;
+      const tailLength = 160; // Adjust length of the fading gradient tail segment here
 
-      gsap.set('.animated-tail', {
-        strokeDasharray: `${tailLength} ${pathLength}`, 
-        strokeDashoffset: pathLength,
-      });
+      // Prepare tail strokes and head visibility properties
+      gsap.set([tail1, tail2], { strokeDasharray: `${tailLength} ${pathLength}` });
+      gsap.set(['.head-1', '.head-2'], { opacity: 1 });
 
-      gsap.to('.animated-tail', {
-        strokeDashoffset: 0,
-        duration: 10,
-        ease: 'none',
-        repeat: -1,
-        // stagger: 5, 
-      });
+      // Reusable timeline constructor function
+      const createCometTimeline = (tailNode: SVGPathElement, headSelector: string, initialProgress: number) => {
+        const tl = gsap.timeline({ repeat: -1 });
 
-      gsap.to('.progress-head', {
-        opacity: 1,
-        strokeDashoffset: 0,
-        duration: 10,
-        ease: 'none',
-        repeat: -1,
-        motionPath: {
-          path: '.track-path',
-          align: '.track-path',
-          alignOrigin: [0, 0],
-          autoRotate: true,       
-        }
-      });
+        // 1. Move the fading tail segment stroke
+        tl.fromTo(tailNode, 
+          { strokeDashoffset: tailLength }, 
+          { 
+            strokeDashoffset: -(pathLength - tailLength), 
+            duration: 15, // Control rotation speed here
+            ease: 'none' 
+          }, 
+          0
+        );
+
+        // 2. Lock the mini square head precisely to the front tip of the path vector
+        tl.to(headSelector, {
+          duration: 15,
+          ease: 'none',
+          motionPath: {
+            path: pathEl,
+            align: pathEl,
+            alignOrigin: [0.5, 0.5], // Centers the square element directly on top of the line
+            autoRotate: true,        // Rotates the square dynamically around corners
+          }
+        }, 0);
+
+        // Advance timeline frame straight to initial offset location position
+        tl.progress(initialProgress);
+      };
+
+      // Instantiate both paths: Comet 1 starts at 0% (Left), Comet 2 starts at 50% (Right)
+      createCometTimeline(tail1, '.head-1', 0);
+      createCometTimeline(tail2, '.head-2', 0.5);
     }
   }, { scope: containerRef });
 

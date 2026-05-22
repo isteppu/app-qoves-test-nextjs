@@ -7,10 +7,6 @@ interface StepItem {
     text: string;
 }
 
-interface MatrixChartProps {
-    isHovered: boolean;
-}
-
 interface QuestionItem {
     q: string;
     a: string;
