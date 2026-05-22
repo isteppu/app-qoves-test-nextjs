@@ -11,7 +11,7 @@ import {
   CartesianGrid,
   ReferenceDot,
 } from "recharts";
-import styles from "./css/BellCurveChart.module.scss";
+import styles from "./BellCurveChart.module.scss";
 import gsap from "gsap";
 
 const X_DOMAIN: [number, number] = [-32, 32];

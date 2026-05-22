@@ -1,9 +1,9 @@
 import BellCurveChart from "./BellCurveChart";
 import MatrixChart from "./MatrixChart";
-import styles from "./css/Charts.module.scss";
+import styles from "./Charts.module.scss";
 import LipSmoothnessChart from "./LipSmoothnessChart";
 import MelaninSpectrumChart from "./MelaninSpectrumChart";
-import FacialThirdsChart from "./FacialThirdsCard";
+import FacialThirdsChart from "./FacialThirdsChart";
 import SymmetryChart from "./SymmetryChart";
 
 const Charts = ({ containerClass }: { containerClass: string }) => {

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { FAQ_DATA } from '@/utils'
 
-import styles from './css/FAQs.module.scss';
+import styles from './FAQs.module.scss';
 
 export default function FAQs() {
   const [activeCat, setActiveCat] = useState<string | null>(null); 

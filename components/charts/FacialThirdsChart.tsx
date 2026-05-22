@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './css/FacialThirdsChart.module.scss';
+import styles from './FacialThirdsChart.module.scss';
 
 export default function FacialThirdsChart() {
   const [isAltered, setIsAltered] = useState(false);

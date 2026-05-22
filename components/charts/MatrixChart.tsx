@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './css/MatrixChart.module.scss';
+import styles from './MatrixChart.module.scss';
 
 export default function MatrixChart() {
     const [isShifted, setIsShifted] = useState(false);

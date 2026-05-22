@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  if (pathname === '/route/main') {
+  if (pathname === '/') {
     return NextResponse.next();
   }
 
@@ -17,7 +17,7 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const rewriteUrl = new URL('/route/main', request.url);
+  const rewriteUrl = new URL('/', request.url);
   return NextResponse.rewrite(rewriteUrl);
 }
 

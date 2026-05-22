@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './css/SymmetryChart.module.scss';
+import styles from './SymmetryChart.module.scss';
 
 export default function SymmetryChart() {
   const [isReordered, setIsReordered] = useState(false);

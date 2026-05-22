@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import styles from './css/LipSmoothnessChart.module.scss';
+import styles from './LipSmoothnessChart.module.scss';
 
 export default function LipSmoothnessChart() {
   const [isToggled, setIsToggled] = useState(false);

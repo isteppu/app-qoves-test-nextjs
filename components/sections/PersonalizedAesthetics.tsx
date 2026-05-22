@@ -2,8 +2,8 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import styles from './css/PersonalizedAesthetic.module.scss';
-import { useAestheticAnimations } from '@/app/hooks/useAnimations';
+import styles from './PersonalizedAesthetics.module.scss';
+import { useAestheticAnimations } from '@/hooks/useAnimations';
 import Charts from '../charts/Charts';
 
 export default function PersonalizedAesthetics() {

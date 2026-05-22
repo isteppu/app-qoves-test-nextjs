@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './css/MelaninSpectrumChart.module.scss';
+import styles from './MelaninSpectrumChart.module.scss';
 import { SPECTRUM_COLORS } from '@/utils';
 
 export default function MelaninSpectrumCard() {

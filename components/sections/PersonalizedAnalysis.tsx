@@ -1,9 +1,9 @@
 "use client"
 import React, { useRef, useState } from 'react'
 import Image from 'next/image';
-import { useAnalysisAnimations } from '@/app/hooks/useAnimations'
+import { useAnalysisAnimations } from '@/hooks/useAnimations'
 import { ANIMATED_VECTOR_PATH, ANALYSIS_STEPS } from '@/utils'
-import styles from './css/PersonalizedAnalysis.module.scss'
+import styles from './PersonalizedAnalysis.module.scss'
 
 const PersonalizedAnalysis = () => {
   const containerRef = useRef<HTMLDivElement>(null);
