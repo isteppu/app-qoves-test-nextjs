@@ -1,139 +1,143 @@
 @function rem($px) {
-    @return ($px / 16) * 1rem;
+  @return ($px / 16) * 1rem;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: rem(12);
+  padding: rem(20);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cardHeader {
+  font-family: var(--font-mono), monospace;
+  font-size: rem(10);
+  text-transform: uppercase;
+  letter-spacing: rem(1);
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: rem(4);
+}
+
+.bigPercentage {
+  font-size: rem(46);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: rem(24);
+  letter-spacing: rem(-1);
+}
+
+.sliderWorkspace {
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+}
+
+
+.labelRow {
+  position: relative;
+  width: 100%;
+  height: rem(24);
+  margin-bottom: rem(8);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.staticLabel {
+  font-size: rem(11);
+  color: rgba(255, 255, 255, 0.8);
+
+  .dim {
+    color: rgba(255, 255, 255, 0.3);
   }
-  
-  .glassCard {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: rem(12);
-    padding: rem(20);
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer; // Makes it obvious that the card is clickable
-    user-select: none;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.staticLabelRight {
+  @extend .staticLabel;
+  white-space: nowrap;
+}
+
+
+.floatingPill {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-105%);
+  background: rgba(255, 255, 255, 0.15);
+  padding: rem(1) rem(5);
+  border-radius: rem(20);
+  font-size: rem(8);
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+.trackContainer {
+  position: relative;
+  width: 100%;
+  height: rem(24);
+  display: flex;
+  align-items: center;
+}
+
+.baseTrack {
+  width: 100%;
+  height: rem(6);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: rem(1);
+  overflow: hidden;
+
+  .trackFill {
+    height: 100%;
+    background: rgba(176, 197, 195, 0.9);
+    border-radius: rem(3);
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   }
-  
-  .cardHeader {
-    font-family: var(--font-mono), monospace;
-    font-size: rem(10);
-    text-transform: uppercase;
-    letter-spacing: rem(1);
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: rem(4);
-  }
-  
-  .bigPercentage {
-    font-size: rem(46);
-    font-weight: 300;
-    line-height: 1;
-    margin-bottom: rem(24);
-    letter-spacing: rem(-1);
-  }
-  
-  .sliderWorkspace {
-    position: relative;
-    width: 100%;
-    margin-top: auto;
-  }
-  
-  // Layout for labels
-  .labelRow {
-    position: relative;
-    width: 100%;
-    height: rem(24);
-    margin-bottom: rem(8);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  
-  .staticLabel {
-    font-size: rem(11);
-    color: rgba(255, 255, 255, 0.8);
-    .dim { color: rgba(255, 255, 255, 0.3); }
-  }
-  .staticLabelRight {
-    @extend .staticLabel;
-    white-space: nowrap;
-  }
-  
-  // The interactive pill container matching the design
-  .floatingPill {
+}
+
+
+.dashedDivider {
+  position: absolute;
+  top: rem(-125);
+  bottom: 0;
+  width: 0;
+  border-left: 1px dashed rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%);
+  transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  z-index: 2;
+
+
+  .topArrow {
     position: absolute;
-    bottom: 0;
-    transform: translateX(-105%); // Keeps it perfectly centered over the timeline line
-    background: rgba(255, 255, 255, 0.15);
-    padding: rem(1) rem(5);
-    border-radius: rem(20);
-    font-size: rem(8);
-    font-weight: 500;
-    white-space: nowrap;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    // Animates position changes seamlessly
-    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  // Track Setup
-  .trackContainer {
-    position: relative;
-    width: 100%;
-    height: rem(24);
-    display: flex;
-    align-items: center;
-  }
-  
-  .baseTrack {
-    width: 100%;
-    height: rem(6);
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: rem(1);
-    overflow: hidden;
-  
-    .trackFill {
-      height: 100%;
-      background: rgba(176, 197, 195, 0.9);
-      border-radius: rem(3);
-      transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-  }
-  
-  // Vertical Dashed Selector Line
-  .dashedDivider {
-    position: absolute;
-    top: rem(-125);
-    bottom: 0;
-    width: 0;
-    border-left: 1px dashed rgba(255, 255, 255, 0.5);
+    top: 0;
+    left: 50%;
     transform: translateX(-50%);
-    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    pointer-events: none;
-    z-index: 2;
-  
-    // Tiny top anchor triangle arrow pointing down
-    .topArrow {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: rem(4) solid transparent;
-      border-right: rem(4) solid transparent;
-      border-top: rem(4) solid rgba(255, 255, 255, 0.8);
-    }
-  
-    // Bottom tiny cap node anchor
-    .bottomIndicator {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: rem(4);
-      height: rem(4);
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-    }
+    width: 0;
+    height: 0;
+    border-left: rem(4) solid transparent;
+    border-right: rem(4) solid transparent;
+    border-top: rem(4) solid rgba(255, 255, 255, 0.8);
   }
+
+
+  .bottomIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: rem(4);
+    height: rem(4);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+}

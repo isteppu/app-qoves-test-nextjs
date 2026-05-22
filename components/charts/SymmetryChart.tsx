@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './css/SymmetryChart.module.scss';
 
 export default function SymmetryChart() {
@@ -18,18 +18,13 @@ export default function SymmetryChart() {
       onMouseLeave={() => setIsReordered(false)}
     >
       <div className={styles.graphBoundaryArena}>
-
-        {/* Background Canvas: 10 Vertical Alignment Grid Wires */}
         <div className={styles.verticalGridContainer}>
           {Array.from({ length: 11 }).map((_, idx) => (
             <div key={idx} className={styles.gridLineWire} />
           ))}
         </div>
 
-        {/* Data Layer: The Horizontal Analysis Rows */}
         <div className={styles.rowsDataLayer}>
-
-          {/* Row 1: IDEAL */}
           <div className={styles.metricRow}>
             <div className={styles.vectorTrackContainer}>
               <div className={styles.solidLineFill1} style={{ width: `${metrics.ideal}%` }} />
@@ -38,8 +33,6 @@ export default function SymmetryChart() {
               </div>
             </div>
           </div>
-
-          {/* Row 2: YOU */}
           <div className={styles.metricRow}>
             <div className={styles.vectorTrackContainer}>
               <div className={styles.solidLineFill2} style={{ width: `${metrics.you}%` }} />
@@ -48,8 +41,6 @@ export default function SymmetryChart() {
               </div>
             </div>
           </div>
-
-          {/* Row 3: AVERAGE */}
           <div className={styles.metricRow}>
             <div className={styles.vectorTrackContainer}>
               <div className={styles.solidLineFill3} style={{ width: `${metrics.average}%` }} />
@@ -58,10 +49,8 @@ export default function SymmetryChart() {
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* Baseline Axis Typography Labels */}
         <div className={styles.axisLabelRow}>
           <span className={styles.axisLabel}>ASYMMETRICAL</span>
           <span className={`${styles.axisLabel} ${styles.blurLabel}`}>SYMMETRICAL</span>

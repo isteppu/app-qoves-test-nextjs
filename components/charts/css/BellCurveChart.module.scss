@@ -11,13 +11,12 @@
 
 .graphArea {
     width: 100%;
-    height: rem(500); // Rigid physical heights prevent chart distortion
+    height: rem(500);
     background: rgba(255, 255, 255, 0.02);
     border-radius: rem(8);
     overflow: hidden;
 }
 
-// Axis Alignment & Layout
 .axisTimeline {
     display: flex;
     justify-content: space-between;
@@ -41,7 +40,6 @@
     color: rgba(255, 255, 255, 0.4);
 }
 
-// Custom Absolute Floating Squares from Figma
 .squareIndicator {
     position: absolute;
     width: rem(3);
@@ -51,7 +49,6 @@
     top: rem(-13);
 }
 
-// Match the arbitrary offsets from your layout screenshot
 .sq1 {
     left: rem(60);
     background-color: rgba(255, 255, 255, 0.9);
@@ -72,8 +69,6 @@
     background-color: #6ba4be;
 }
 
-// Matches active blue theme node
-
 .cardFooterText {
     font-family: var(--font-sans), sans-serif;
     font-size: rem(11);
@@ -90,32 +85,32 @@
     margin-top: rem(12);
 }
 
-/* BellCurveChart.module.scss */
-
 .tailActive {
     transform-origin: right center;
     animation: revealTail 0.6s ease-in-out forwards;
-  }
-  
-  .tailInactive {
+}
+
+.tailInactive {
     transform-origin: right center;
     animation: hideTail 0.6s ease-in-out forwards;
-  }
-  
-  @keyframes revealTail {
+}
+
+@keyframes revealTail {
     from {
-      transform: scaleX(0);
+        transform: scaleX(0);
     }
+
     to {
-      transform: scaleX(1);
+        transform: scaleX(1);
     }
-  }
-  
-  @keyframes hideTail {
+}
+
+@keyframes hideTail {
     from {
-      transform: scaleX(1);
+        transform: scaleX(1);
     }
+
     to {
-      transform: scaleX(0);
+        transform: scaleX(0);
     }
-  }
+}

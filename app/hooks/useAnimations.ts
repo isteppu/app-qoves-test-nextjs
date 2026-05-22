@@ -43,47 +43,43 @@ export function useAnalysisAnimations(
     const pathEl = containerRef.current.querySelector('.track-path') as SVGPathElement;
     const tail1 = containerRef.current.querySelector('.tail-1') as SVGPathElement;
     const tail2 = containerRef.current.querySelector('.tail-2') as SVGPathElement;
-    
+
     if (pathEl && tail1 && tail2) {
       const pathLength = pathEl.getTotalLength();
-      const tailLength = 160; // Adjust length of the fading gradient tail segment here
+      const tailLength = 160;
 
-      // Prepare tail strokes and head visibility properties
       gsap.set([tail1, tail2], { strokeDasharray: `${tailLength} ${pathLength}` });
       gsap.set(['.head-1', '.head-2'], { opacity: 1 });
 
-      // Reusable timeline constructor function
       const createCometTimeline = (tailNode: SVGPathElement, headSelector: string, initialProgress: number) => {
-        const tl = gsap.timeline({ repeat: -1 });
+      const tl = gsap.timeline({ repeat: -1 });
 
-        // 1. Move the fading tail segment stroke
-        tl.fromTo(tailNode, 
-          { strokeDashoffset: tailLength }, 
-          { 
-            strokeDashoffset: -(pathLength - tailLength), 
-            duration: 15, // Control rotation speed here
-            ease: 'none' 
-          }, 
+
+        tl.fromTo(tailNode,
+          { strokeDashoffset: tailLength },
+          {
+            strokeDashoffset: -(pathLength - tailLength),
+            duration: 15,
+            ease: 'none'
+          },
           0
         );
 
-        // 2. Lock the mini square head precisely to the front tip of the path vector
         tl.to(headSelector, {
           duration: 15,
           ease: 'none',
           motionPath: {
             path: pathEl,
             align: pathEl,
-            alignOrigin: [0.5, 0.5], // Centers the square element directly on top of the line
-            autoRotate: true,        // Rotates the square dynamically around corners
+            alignOrigin: [0.5, 0.5],
+            autoRotate: true,
           }
         }, 0);
 
-        // Advance timeline frame straight to initial offset location position
         tl.progress(initialProgress);
       };
 
-      // Instantiate both paths: Comet 1 starts at 0% (Left), Comet 2 starts at 50% (Right)
+
       createCometTimeline(tail1, '.head-1', 0);
       createCometTimeline(tail2, '.head-2', 0.5);
     }
@@ -94,43 +90,43 @@ export function useAnalysisAnimations(
 export function useAestheticAnimations(
   containerRef: RefObject<HTMLElement | null>,
   styles: Record<string, string>,
-){
+) {
   useGSAP(() => {
     if (!containerRef.current) return;
 
     gsap.to(`.${styles.parallaxSubject}`, {
-      scale: 1.1,      
+      scale: 1.1,
       ease: 'none',
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top bottom',
-        end: 'bottom top',  
-        scrub: 1,   
-        markers: false,        
+        end: 'bottom top',
+        scrub: 1,
+        markers: false,
       }
     });
 
     gsap.to(`.${styles.headerBlock}`, {
-      y: 50,      
+      y: 50,
       ease: 'none',
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top bottom',
-        end: 'bottom top',  
-        scrub: 1,   
-        markers: false,        
+        end: 'bottom top',
+        scrub: 1,
+        markers: false,
       }
     });
 
     gsap.to(`.${styles.glassCard}`, {
-      y: 100,      
+      y: 100,
       ease: 'none',
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top bottom',
-        end: 'bottom top',  
-        scrub: 1,   
-        markers: false,        
+        end: 'bottom top',
+        scrub: 1,
+        markers: false,
       }
     });
 

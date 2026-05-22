@@ -2,23 +2,15 @@
 import React, { useRef, useState } from 'react'
 import Image from 'next/image';
 import { useAnalysisAnimations } from '@/app/hooks/useAnimations'
-import { ANIMATED_VECTOR_PATH, ANALYSIS_STEPS, ANIMATED_VECTOR_TAIL } from '@/utils'
+import { ANIMATED_VECTOR_PATH, ANALYSIS_STEPS } from '@/utils'
 import styles from './css/PersonalizedAnalysis.module.scss'
 
 const PersonalizedAnalysis = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState<number>(2);
-
   useAnalysisAnimations(containerRef, styles);
 
   return (
     <section ref={containerRef} className={styles.sectionWrapper}>
-      {/* <div className={styles.gridOverlay}>
-        <div className={styles.gridContainer}>
-          <div className={styles.horizontalLine} />
-        </div>
-      </div> */}
-
       <div className={styles.container}>
         <div className={styles.headerBlock}>
           <span className={styles.badge}>Personalized Analysis</span>
@@ -54,7 +46,6 @@ const PersonalizedAnalysis = () => {
               fill="none"
             />
 
-            {/* 2. Comet 1 Tail (1.5px fading stroke) */}
             <path
               className="tail-1"
               d={ANIMATED_VECTOR_PATH}
@@ -64,7 +55,6 @@ const PersonalizedAnalysis = () => {
               strokeLinecap="round"
             />
 
-            {/* 3. Comet 2 Tail (1.5px fading stroke) */}
             <path
               className="tail-2"
               d={ANIMATED_VECTOR_PATH}
@@ -74,7 +64,6 @@ const PersonalizedAnalysis = () => {
               strokeLinecap="round"
             />
 
-            {/* 4. Mini Square Heads (6x6px squares with slight 1px radius cornering) */}
             <rect className="head-1" width="6" height="6" fill="#869AA1" rx="1" style={{ opacity: 0 }} />
             <rect className="head-2" width="6" height="6" fill="#869AA1" rx="1" style={{ opacity: 0 }} />
           </svg>
@@ -114,7 +103,6 @@ const PersonalizedAnalysis = () => {
           {ANALYSIS_STEPS.map((step) => (
             <button
               key={step.id}
-              onClick={() => setActiveStep(step.id)}
               className={styles.stepCard}
             >
               <span className={styles.stepNumber}>{step.id}</span>

@@ -1,101 +1,118 @@
 @function rem($px) {
-    @return ($px / 16) * 1rem;
-  }
-  
-  .matrixWrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: rem(20);
-  }
-  
-  .label {
-    position: absolute;
-    font-family: var(--font-mono), monospace;
-    font-weight: 300;
-    font-size: rem(7);
-    letter-spacing: rem(1);
-    color: rgba(255, 255, 255, 0.6);
-  }
-  .labelTop { top: rem(25); }
-  .labelBottom { bottom: rem(25); }
-  .labelLeft { left: rem(0);}
-  .labelRight { right: rem(0); }
-  
-  .crosshairVertical, .crosshairHorizontal {
-    position: absolute;
-    background: transparent;
-    pointer-events: none;
-    z-index: 1;
-  }
+  @return ($px / 16) * 1rem;
+}
 
-  .crosshairVertical {
-    top: 15%; bottom: 15%; left: 50%;
-    border-left: 1px dashed rgba(255, 255, 255, 0.2);
-    transform: translateX(-50%);
-  }
+.matrixWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: rem(20);
+}
 
-  .crosshairHorizontal {
-    left: 15%; right: 15%; top: 50%;
-    border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%);
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    gap: rem(5);
-    width: 62%;
-    height: 62%;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .cell {
-    border-radius: rem(4);
-    transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  .cellDefault {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-  
-  .cellNeighbor {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+.label {
+  position: absolute;
+  font-family: var(--font-mono), monospace;
+  font-weight: 300;
+  font-size: rem(7);
+  letter-spacing: rem(1);
+  color: rgba(255, 255, 255, 0.6);
+}
 
-  .cellNeighbor2 {
-    background-color: rgba(255, 255, 255, 0.4);
-  }
-  
-  .cellNeighbor3 {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+.labelTop {
+  top: rem(25);
+}
 
-  .cellNeighbor4 {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-  
-  .cellCenter {
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 rem(12) rgba(255, 255, 255, 0.8);
-  }
+.labelBottom {
+  bottom: rem(25);
+}
 
-  .cardFooterText {
-    font-size: rem(11);
-    color: rgba(255, 255, 255, 0.6);
-    text-align: left;
-  }
-  
-  .cardFooterTextAlt {
-    @extend .cardFooterText;
-    background: rgba(255, 255, 255, 0.1);
-    padding: rem(5);
-    border-radius: rem(5);
-    margin-top: rem(22);
-  }
+.labelLeft {
+  left: rem(0);
+}
+
+.labelRight {
+  right: rem(0);
+}
+
+.crosshairVertical,
+.crosshairHorizontal {
+  position: absolute;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crosshairVertical {
+  top: 15%;
+  bottom: 15%;
+  left: 50%;
+  border-left: 1px dashed rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+}
+
+.crosshairHorizontal {
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: rem(5);
+  width: 62%;
+  height: 62%;
+  position: relative;
+  z-index: 2;
+}
+
+.cell {
+  border-radius: rem(4);
+  transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cellDefault {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.cellNeighbor {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.cellNeighbor2 {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.cellNeighbor3 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cellNeighbor4 {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.cellCenter {
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 rem(12) rgba(255, 255, 255, 0.8);
+}
+
+.cardFooterText {
+  font-size: rem(11);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: left;
+}
+
+.cardFooterTextAlt {
+  @extend .cardFooterText;
+  background: rgba(255, 255, 255, 0.1);
+  padding: rem(5);
+  border-radius: rem(5);
+  margin-top: rem(22);
+}

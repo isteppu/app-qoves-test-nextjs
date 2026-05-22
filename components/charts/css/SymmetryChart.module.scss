@@ -1,147 +1,146 @@
 @function rem($px) {
-    @return ($px / 16) * 1rem;
-  }
-  
-  .glassCard {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: rem(12);
-    padding: rem(24) rem(20);
-    color: #ffffff;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  .graphBoundaryArena {
-    position: relative;
-    width: 100%;
-    height: rem(135);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  // Background Matrix Setup
-  .verticalGridContainer {
-    position: absolute;
-    inset: 0 bottom rem(24); // Leaves bottom clearance space open for footer axis labels
-    display: flex;
-    width: 100%;
-    height: rem(120);
-    justify-content: space-between;
-    pointer-events: none;
-    z-index: 1;
-  }
-  
-  .gridLineWire {
-    width: 0;
-    height: 100%;
-    border-left: 0.2px dotted rgba(255, 255, 255, 0.15);
-  }
-  
-  // Horizontal Track Execution Layer
-  .rowsDataLayer {
-    position: relative;
-    z-index: 2;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: rem(10) 0;
-  }
-  
-  .metricRow {
-    width: 100%;
-    height: rem(12);
-    display: flex;
-    align-items: center;
-  }
-  
-  .vectorTrackContainer {
-    position: relative;
-    width: 100%;
-    height: 1px;
-    // Behind the value marker pin, the wire defaults to a clean dashed line style
-    border-top: 1px dashed rgba(255, 255, 255, 0.2);
-  }
-  
-  // Solid line fill running underneath until reaching the target value location point
-  .solidLineFill1 {
-    position: absolute;
-    top: -1px; // Align directly over parent container border
-    left: 0;
-    height: 3px;
-    border-top: 3px solid #CDDBE1;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
+  @return ($px / 16) * 1rem;
+}
 
-  .solidLineFill2 {
-    position: absolute;
-    top: -1px; // Align directly over parent container border
-    left: 0;
-    height: 3px;
-    border-top: 3px solid #9AAEB5;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
+.glassCard {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: rem(12);
+  padding: rem(24) rem(20);
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-  .solidLineFill3 {
-    position: absolute;
-    top: -1px; // Align directly over parent container border
-    left: 0;
-    height: 3px;
-    border-top: 3px solid #5D767E;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  // Floating Badge Vector Coordinates Assembly
-  .badgePillAnchor {
-    position: absolute;
-    top: 0;
-    transform: translate(-50%, -50%);
-    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  .badgePill {
-    background: #ffffff;
-    color: #111111;
-    font-size: rem(7);
-    font-weight: 300;
-    letter-spacing: rem(0.5);
-    padding: rem(4) rem(8);
-    border-radius: rem(4);
-    display: flex;
-    align-items: center;
-    gap: rem(6);
-    box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.2);
-    white-space: nowrap;
-  }
-  
-  .tokenSquare {
-    width: rem(6);
-    height: rem(6);
-    border-radius: rem(1);
-    display: inline-block;
-  }
-  
-  // Axis Bottom Typography Labels Block
-  .axisLabelRow {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
-  }
-  
-  .axisLabel {
-    font-family: var(--font-mono), monospace;
-    font-size: rem(10);
-    letter-spacing: rem(1);
-    color: rgba(255, 255, 255, 0.4);
-  }
-  
-  .blurLabel {
-    color: rgba(255, 255, 255, 0.25);
-    filter: blur(0.5px);
-  }
+.graphBoundaryArena {
+  position: relative;
+  width: 100%;
+  height: rem(135);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.verticalGridContainer {
+  position: absolute;
+  inset: 0 bottom rem(24);
+  display: flex;
+  width: 100%;
+  height: rem(120);
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gridLineWire {
+  width: 0;
+  height: 100%;
+  border-left: 0.2px dotted rgba(255, 255, 255, 0.15);
+}
+
+
+.rowsDataLayer {
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: rem(10) 0;
+}
+
+.metricRow {
+  width: 100%;
+  height: rem(12);
+  display: flex;
+  align-items: center;
+}
+
+.vectorTrackContainer {
+  position: relative;
+  width: 100%;
+  height: 1px;
+
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+
+.solidLineFill1 {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 3px;
+  border-top: 3px solid #CDDBE1;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.solidLineFill2 {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 3px;
+  border-top: 3px solid #9AAEB5;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.solidLineFill3 {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 3px;
+  border-top: 3px solid #5D767E;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+.badgePillAnchor {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.badgePill {
+  background: #ffffff;
+  color: #111111;
+  font-size: rem(7);
+  font-weight: 300;
+  letter-spacing: rem(0.5);
+  padding: rem(4) rem(8);
+  border-radius: rem(4);
+  display: flex;
+  align-items: center;
+  gap: rem(6);
+  box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.tokenSquare {
+  width: rem(6);
+  height: rem(6);
+  border-radius: rem(1);
+  display: inline-block;
+}
+
+.axisLabelRow {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.axisLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: rem(10);
+  letter-spacing: rem(1);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.blurLabel {
+  color: rgba(255, 255, 255, 0.25);
+  filter: blur(0.5px);
+}

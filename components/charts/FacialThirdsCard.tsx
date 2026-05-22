@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import styles from './css/FacialThirdsChart.module.scss';
 
 export default function FacialThirdsChart() {
-  // Toggle layout values between default snapshot and a balanced profile
   const [isAltered, setIsAltered] = useState(false);
 
   const lowerThird = isAltered ? 0.50 : 0.31;
@@ -20,7 +19,6 @@ export default function FacialThirdsChart() {
 
       <div className={styles.segmentWorkspace}>
         
-        {/* Top Text Labels Row */}
         <div className={styles.labelRowTop}>
           <div style={{ width: `${lowerThird * 100}%` }} className={styles.textAnchorCenter}>
             LOWER THIRD [C]
@@ -33,7 +31,6 @@ export default function FacialThirdsChart() {
           </div>
         </div>
 
-        {/* Continuous Segmented Bar Track */}
         <div className={styles.segmentedProgressBar}>
           <div 
             className={`${styles.barSegment} ${styles.segmentDark}`} 
@@ -49,7 +46,6 @@ export default function FacialThirdsChart() {
           />
         </div>
 
-        {/* Bottom Metrics Value Row */}
         <div className={styles.labelRowBottom}>
           <div style={{ width: `${lowerThird * 100}%` }} className={styles.valueAnchor}>
             {lowerThird.toFixed(2)}

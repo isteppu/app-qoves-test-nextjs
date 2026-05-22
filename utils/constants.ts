@@ -41,3 +41,12 @@ export const FAQ_DATA = [
     { id: 'practical', title: 'Practical Concerns', questions: [{ q: 'What lighting is ideal for photos?', a: 'Neutral, diffused daylight facing a window guarantees the cleanest optical scanning matrix.' }] },
     { id: 'support', title: 'About Support', questions: [{ q: 'How can I connect with assistance?', a: 'Our chat module is fully active 24/7 in the lower right dashboard layer.' }] }
   ];
+
+   export const SPECTRUM_COLORS = [
+    '#ACD6DA', '#D4E7F4', '#698DB5', '#6C97C0', '#91AEC4', 
+    '#ADB291', '#252F38', '#4E676E', '#72736D', '#7E9F9A', 
+    '#292D39', '#988155', '#A58345', '#C6A363', '#624934', 
+    '#AA886C', '#B9805B', '#BB956E', '#775A38', '#814642', 
+    '#8B5644', '#B06045', '#170C08', '#482F33', '#5A3139',
+    '#5C4A56'
+  ];

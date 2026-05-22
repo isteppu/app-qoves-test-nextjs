@@ -39,6 +39,8 @@ export default function PersonalizedAesthetics() {
         <Charts containerClass={styles.glassCard} />
 
       </div>
+
+      <div className={styles.edgeBlurOverlay} />
     </section>
   );
 }

@@ -6,8 +6,8 @@ import { FAQ_DATA } from '@/utils'
 import styles from './css/FAQs.module.scss';
 
 export default function FAQs() {
-  const [activeCat, setActiveCat] = useState<string | null>(null); // 'general' open by default to match screenshot
-  const [activeQuery, setActiveQuery] = useState<number | null>(0);     // First question open by default
+  const [activeCat, setActiveCat] = useState<string | null>(null); 
+  const [activeQuery, setActiveQuery] = useState<number | null>(0);
 
   const handleCategoryToggle = (catId: string) => {
     if (activeCat === catId) {
@@ -15,12 +15,12 @@ export default function FAQs() {
       setActiveQuery(null);
     } else {
       setActiveCat(catId);
-      setActiveQuery(null); // Reset nested open status when shifting groups
+      setActiveQuery(null); 
     }
   };
 
   const handleQueryToggle = (idx: number, e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevents clicking a nested row from closing the parent group
+    e.stopPropagation(); 
     setActiveQuery(activeQuery === idx ? null : idx);
   };
 
@@ -46,7 +46,6 @@ export default function FAQs() {
               className={`${styles.categoryWrapper} ${isCatOpen ? styles.categoryOpen : styles.categoryClosed}`}
               onClick={() => handleCategoryToggle(category.id)}
             >
-              {/* Category Header Row */}
               <div className={styles.categoryHeader}>
                 <h3>{category.title}</h3>
                 <span className={styles.toggleIcon}>
@@ -54,7 +53,6 @@ export default function FAQs() {
                 </span>
               </div>
 
-              {/* Nested Queries Container */}
               {isCatOpen && (
                 <div className={styles.nestedQueriesList}>
                   {category.questions.map((item, idx) => {

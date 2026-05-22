@@ -1,86 +1,93 @@
 @function rem($px) {
-    @return ($px / 16) * 1rem;
+  @return ($px / 16) * 1rem;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: rem(12);
+  padding: rem(20);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cardHeader {
+  font-family: var(--font-mono), monospace;
+  font-size: rem(10);
+  text-transform: uppercase;
+  letter-spacing: rem(1.2);
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: rem(24);
+}
+
+.segmentWorkspace {
+  margin-top: rem(60);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.labelRowTop {
+  display: flex;
+  width: 100%;
+  margin-bottom: rem(5);
+}
+
+.textAnchorCenter {
+  font-family: var(--font-mono), monospace;
+  font-size: rem(10);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  white-space: nowrap;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.segmentedProgressBar {
+  width: 100%;
+  height: rem(6);
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: rem(3);
+  overflow: hidden;
+}
+
+.barSegment {
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+  &:not(:last-child) {
+    border-right: 1.5px solid #4a5458;
   }
-  
-  .glassCard {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: rem(12);
-    padding: rem(20);
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  .cardHeader {
-    font-family: var(--font-mono), monospace;
-    font-size: rem(10);
-    text-transform: uppercase;
-    letter-spacing: rem(1.2);
-    color: rgba(255, 255, 255, 0.35);
-    margin-bottom: rem(24);
-  }
-  
-  .segmentWorkspace {
-    margin-top: rem(60);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .labelRowTop {
-    display: flex;
-    width: 100%;
-    margin-bottom: rem(5);
-  }
-  
-  .textAnchorCenter {
-    font-family: var(--font-mono), monospace;
-    font-size: rem(10);
-    color: rgba(255, 255, 255, 0.6);
-    text-align: center;
-    white-space: nowrap;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  // Seamless ProgressBar Container
-  .segmentedProgressBar {
-    width: 100%;
-    height: rem(6);
-    display: flex;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: rem(3);
-    overflow: hidden;
-  }
-  
-  .barSegment {
-    height: 100%;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    
-    &:not(:last-child) {
-      border-right: 1.5px solid #4a5458; // Thin separator line block
-    }
-  }
-  
-  // Colors derived straight from the layout image pixels
-  .segmentDark { background-color: #5D767E; }
-  .segmentMedium { background-color: #9AAEB5; }
-  .segmentLight { background-color: #CDDBE1; filter: blur(0.5px); }
-  
-  .labelRowBottom {
-    display: flex;
-    width: 100%;
-    margin-top: rem(8);
-  }
-  
-  .valueAnchor {
-    font-size: rem(13);
-    font-weight: 400;
-    color: #ffffff;
-    text-align: center;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
+}
+
+.segmentDark {
+  background-color: #5D767E;
+}
+
+.segmentMedium {
+  background-color: #9AAEB5;
+}
+
+.segmentLight {
+  background-color: #CDDBE1;
+  filter: blur(0.5px);
+}
+
+.labelRowBottom {
+  display: flex;
+  width: 100%;
+  margin-top: rem(8);
+}
+
+.valueAnchor {
+  font-size: rem(13);
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}

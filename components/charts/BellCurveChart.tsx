@@ -50,8 +50,6 @@ export default function BellCurveChart() {
   const onResize = (width: number, height: number) => {
     sizeRef.current = { width, height };
     if (!clipRef.current) return;
-
-    // initialize once after Recharts mounts
     if (!hasInit.current) {
       threshValue.current.x = dataToPixel(16, width);
       updateClip();
