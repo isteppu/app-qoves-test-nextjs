@@ -2,6 +2,17 @@
 
 $grid-lines: border 1px solid rgba(255, 255, 255, 0.1);
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+
 html, #root, body, #main-page {
   height: 100%;
   width: 100%;
