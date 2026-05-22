@@ -13,6 +13,7 @@
   position: relative;
   overflow: hidden;
   color: #ffffff;
+  background-position: center;
 }
 
 .headerBlock {
@@ -141,12 +142,19 @@
 }
 
 @media (max-width: 768px) {
+  .edgeBlurOverlay {
+    display: none;
+  }
 
   .sectionWrapper {
     padding-top: rem(40);
     padding-bottom: rem(40);
     min-height: auto;
     height: rem(1000);
+    background-color: #9AAEB5;
+    background-image: url(../../public/assets/BlurBG.png);
+    background-size: cover;
+    background-position: center;
   }
 
   .headerBlock {

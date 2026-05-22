@@ -271,6 +271,12 @@
 }
 
 @media (max-width: 768px) {
+
+    .accordionContainer {
+        padding-left: rem(10);
+        padding-right: rem(10);
+    }
+
     .headerBlock {
         margin-bottom: rem(20);
         padding: 0 rem(24);
@@ -287,6 +293,9 @@
             }
         }
     }
+    .headerBlock::after {
+    display: none;
+}
 }
 
 @media (max-width: 375px) {
