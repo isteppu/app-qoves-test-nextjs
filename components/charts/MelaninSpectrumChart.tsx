@@ -3,11 +3,7 @@
 import React, { useState } from 'react';
 import styles from './css/MelaninSpectrumChart.module.scss';
 
-interface MelaninSpectrumCardProps {
-  className?: string;
-}
-
-export default function MelaninSpectrumCard({ className }: MelaninSpectrumCardProps) {
+export default function MelaninSpectrumCard() {
   // false = Dark Brown (Default index 13), true = Deep espresso (Clicked State index 18)
   const [isShifted, setIsShifted] = useState(false);
 

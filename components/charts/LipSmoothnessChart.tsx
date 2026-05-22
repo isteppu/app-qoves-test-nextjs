@@ -3,11 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './css/LipSmoothnessChart.module.scss';
 
-interface LipSmoothnessChartProps {
-  className?: string;
-}
-
-export default function LipSmoothnessChart({ className }: LipSmoothnessChartProps) {
+export default function LipSmoothnessChart() {
   // false = 56% (Default), true = 15% (Clicked State)
   const [isToggled, setIsToggled] = useState(false);
   const [displayValue, setDisplayValue] = useState(56);

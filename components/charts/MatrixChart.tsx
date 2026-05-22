@@ -3,10 +3,6 @@
 import React from 'react';
 import styles from './css/MatrixChart.module.scss';
 
-interface MatrixChartProps {
-    isHovered: boolean;
-}
-
 export default function MatrixChart({ isHovered }: MatrixChartProps) {
     const rows = 10;
     const cols = 10;
