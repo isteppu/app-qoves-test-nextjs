@@ -71,7 +71,7 @@ This codebase embraces strict **Component Colocation**. Every presentation card 
 * 1. Clone the repository
 Bash
 ```
-git clone [https://github.com/isteppu/app-qoves-test-nextjs.git](https://github.com/isteppu/app-qoves-test-nextjs.git)
+git clone https://github.com/isteppu/app-qoves-test-nextjs.git
 cd your-repo-name
 ```
 * 2. Install dependencies
