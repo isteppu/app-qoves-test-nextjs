@@ -91,7 +91,7 @@ npm run dev
 # or
 yarn dev
 ```
-Open http://localhost:3000 with your browser to see the live rendering.
+Open http://localhost:5120 with your browser to see the live rendering.
 
 ---
 
